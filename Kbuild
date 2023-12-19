@@ -1,3 +1,13 @@
+WLAN_PLATFORM_ROOT := $(srctree)/techpack/wlan
+
+ifeq ($(CONFIG_ARCH_WAIPIO), y)
+include $(WLAN_PLATFORM_ROOT)/config/gki_waipiowlan.conf
+endif
+
+ifeq ($(CONFIG_ARCH_KALAMA), y)
+include $(WLAN_PLATFORM_ROOT)/config/gki_kalamawlan.conf
+endif
+
 ifeq ($(CONFIG_CNSS_OUT_OF_TREE),y)
 KBUILD_CPPFLAGS += -DCONFIG_CNSS_OUT_OF_TREE
 endif
@@ -22,15 +32,11 @@ ifeq ($(CONFIG_ICNSS2_QMI),y)
 KBUILD_CPPFLAGS += -DCONFIG_ICNSS2_QMI
 endif
 
-# CONFIG_WCNSS_MEM_PRE_ALLOC should never be "y" here since it
-# can be only compiled as a module from out-of-kernel-tree source.
-ifeq ($(CONFIG_WCNSS_MEM_PRE_ALLOC),m)
+ifeq ($(CONFIG_WCNSS_MEM_PRE_ALLOC),y)
 KBUILD_CPPFLAGS += -DCONFIG_WCNSS_MEM_PRE_ALLOC
 endif
 
-# CONFIG_CNSS_PLAT_IPC_QMI_SVC should never be "y" here since it
-# can be only compiled as a module from out-of-kernel-tree source.
-ifeq ($(CONFIG_CNSS_PLAT_IPC_QMI_SVC),m)
+ifeq ($(CONFIG_CNSS_PLAT_IPC_QMI_SVC),y)
 KBUILD_CPPFLAGS += -DCONFIG_CNSS_PLAT_IPC_QMI_SVC
 endif
 
