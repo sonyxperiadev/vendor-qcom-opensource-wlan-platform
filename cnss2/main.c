@@ -4984,8 +4984,7 @@ retry:
 
 	ret = cnss_bus_init(plat_priv);
 	if (ret) {
-		if ((ret != -EPROBE_DEFER) &&
-		    retry++ < POWER_ON_RETRY_MAX_TIMES) {
+		if (retry++ < POWER_ON_RETRY_MAX_TIMES) {
 			cnss_power_off_device(plat_priv);
 			cnss_pr_dbg("Retry cnss_bus_init #%d\n", retry);
 			msleep(POWER_ON_RETRY_DELAY_MS * retry);
