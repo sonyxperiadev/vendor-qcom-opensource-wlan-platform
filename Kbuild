@@ -1,3 +1,12 @@
+ifeq ($(WLAN_PLATFORM_ROOT),)
+WLAN_PLATFORM_ROOT := $(srctree)/techpack/wlan
+endif
+
+ifeq ($(CONFIG_ARCH_PARROT), y)
+include $(WLAN_PLATFORM_ROOT)/config/parrotwlan.conf
+LINUXINCLUDE += -include $(WLAN_PLATFORM_ROOT)/config/parrotwlanconf.h
+endif
+
 ifeq ($(CONFIG_CNSS_OUT_OF_TREE),y)
 KBUILD_CPPFLAGS += -DCONFIG_CNSS_OUT_OF_TREE
 endif
