@@ -2,6 +2,11 @@ ifeq ($(WLAN_PLATFORM_ROOT),)
 WLAN_PLATFORM_ROOT := $(srctree)/techpack/wlan
 endif
 
+ifeq ($(CONFIG_ARCH_WAIPIO), y)
+include $(WLAN_PLATFORM_ROOT)/config/waipiowlan.conf
+LINUXINCLUDE += -include $(WLAN_PLATFORM_ROOT)/config/waipiowlanconf.h
+endif
+
 ifeq ($(CONFIG_ARCH_PARROT), y)
 include $(WLAN_PLATFORM_ROOT)/config/parrotwlan.conf
 LINUXINCLUDE += -include $(WLAN_PLATFORM_ROOT)/config/parrotwlanconf.h
