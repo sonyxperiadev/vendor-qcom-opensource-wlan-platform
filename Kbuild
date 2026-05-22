@@ -7,6 +7,11 @@ include $(WLAN_PLATFORM_ROOT)/config/waipiowlan.conf
 LINUXINCLUDE += -include $(WLAN_PLATFORM_ROOT)/config/waipiowlanconf.h
 endif
 
+ifeq ($(CONFIG_ARCH_KALAMA), y)
+include $(WLAN_PLATFORM_ROOT)/config/kalamawlan.conf
+LINUXINCLUDE += -include $(WLAN_PLATFORM_ROOT)/config/kalamawlanconf.h
+endif
+
 ifeq ($(CONFIG_ARCH_PARROT), y)
 include $(WLAN_PLATFORM_ROOT)/config/parrotwlan.conf
 LINUXINCLUDE += -include $(WLAN_PLATFORM_ROOT)/config/parrotwlanconf.h
